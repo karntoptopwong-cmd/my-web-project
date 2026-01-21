@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome</title>
-  <link rel="stylesheet" href="loggedin.css">  
+  <meta charset="UTF-8">
+  <title>Logged In</title>
+  <link rel="stylesheet" href="loggedin.css">
 </head>
 <body>
+
   <h1 id="welcomeMsg"></h1>
   <p id="points"></p>
-  <button id="logoutBtn">Log Out</button>
-  <script src="loggedin.js"></script>
 
+  <button id="openModalBtn">เปิดแท็บ</button>
+  <button id="logoutBtn" type="button">Log Out</button>
+
+  <!-- Modal -->
+  <div id="modalOverlay" class="modal-overlay">
+    <div class="modal-box">
+      <h2>เมนูเพิ่มเติม</h2>
+      <p>เลือก option</p>
+      <button id="closeModalBtn">ปิด</button>
+    </div>
+  </div>
+
+  <!-- JS ต้องอยู่ล่างสุด -->
+  <script src="loggedin.js"></script>
 </body>
 </html>

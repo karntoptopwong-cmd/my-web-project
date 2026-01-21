@@ -1,35 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Profile</title>
-  <link rel="stylesheet" href="profile.css">
+  <link rel="stylesheet" href="profile.css" />
 </head>
 <body>
 
   <div class="profile-container">
+    <div class="profile-card">
 
-    <!-- Avatar + Username -->
-    <div class="profile-header">
+      <!-- Profile Image -->
       <div class="avatar"></div>
-      <h2 id="username"></h2>
-      <button id="editBtn" class="edit-btn">✏️ Edit</button>
+
+      <!-- Username -->
+      <h2 id="username">ฟะะ</h2>
+
+      <!-- Edit Button -->
+      <button class="edit-btn" id="editBtn">✏️ Edit</button>
+
+      <!-- Form -->
+      <form id="profileForm">
+        <input type="text" value="ฟะะ" disabled />
+        <input type="text" value="6/3" disabled />
+        <input type="text" value="7" disabled />
+        <input type="text" placeholder="เบอร์โทร (ไม่จำเป็น)" disabled />
+        <input type="email" placeholder="Email (ไม่จำเป็น)" disabled />
+
+        <button type="submit" class="save-btn" disabled>Save</button>
+      </form>
+
+      <!-- Back -->
+      <a href="loggedin.html" class="back-link">Back</a>
+
     </div>
-
-    <!-- Form -->
-    <div class="profile-form">
-      <input type="text" id="fullname" placeholder="ชื่อ - นามสกุล" disabled>
-      <input type="text" id="class" placeholder="ชั้น" disabled>
-      <input type="text" id="number" placeholder="เลขที่" disabled>
-      <input type="tel" id="phone" placeholder="เบอร์โทร (ไม่จำเป็น)" disabled>
-      <input type="email" id="email" placeholder="Email (ไม่จำเป็น)" disabled>
-
-      <button id="saveBtn" disabled>Save</button>
-    </div>
-
-    <!-- Back -->
-    <div class="back-link" id="backBtn">Back</div>
-
   </div>
 
   <script src="profile.js"></script>

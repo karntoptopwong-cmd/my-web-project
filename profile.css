@@ -15,11 +15,11 @@ body {
 
 /* ===== กล่องหลัก ===== */
 .profile-container {
-  width: 420px;                 /* เพิ่มขนาดโครงสร้างหลัก */
+  width: 460px;
   background: white;
-  border-radius: 10px;
-  padding: 30px 35px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  padding: 35px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
   position: relative;
 }
 
@@ -32,33 +32,30 @@ body {
 }
 
 .avatar {
-  width: 90px;
-  height: 90px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
-  background: #0078d7;
-  margin-bottom: 12px;
+  object-fit: cover;
+  margin-bottom: 10px;
 }
 
 #usernameDisplay {
-  margin: 5px 0 10px;
+  margin: 6px 0 10px;
 }
 
 .edit-btn {
   font-size: 13px;
-  padding: 4px 10px;
+  padding: 5px 12px;
   cursor: pointer;
 }
 
 /* ===== Form ===== */
 #profileForm {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;   /* ทำให้ทุกอย่างอยู่กลาง */
 }
 
 .form-group {
-  width: 100%;           /* ซ้าย–ขวาเท่ากัน */
+  width: 100%;
   margin-bottom: 14px;
 }
 
@@ -70,15 +67,15 @@ body {
 
 .form-group input {
   width: 100%;
-  padding: 8px 10px;
+  padding: 9px 10px;
   font-size: 14px;
 }
 
-/* ===== Save Button ===== */
+/* ===== Save ===== */
 #saveBtn {
-  width: 100%;           /* ยาวเท่าช่อง input */
-  margin-top: 10px;
-  padding: 10px 0;
+  width: 100%;
+  margin-top: 12px;
+  padding: 11px 0;
   background: #0078d7;
   color: white;
   border: none;
@@ -94,8 +91,8 @@ body {
 /* ===== Back ===== */
 .back-link {
   position: absolute;
-  right: 20px;
-  bottom: 15px;
+  right: 22px;
+  bottom: 18px;
   font-size: 13px;
   text-decoration: underline;
   cursor: pointer;

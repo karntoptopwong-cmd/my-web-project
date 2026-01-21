@@ -1,58 +1,41 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <title>Profile</title>
-  <link rel="stylesheet" href="profile.css">
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="profile.css">
 </head>
 <body>
 
-  <div class="profile-container">
+<div class="profile-card">
 
-    <!-- Header -->
-    <div class="profile-header">
-      <img src="assets/avartar.jpg" alt="avatar" class="avatar">
-      <h2 id="usernameDisplay"></h2>
-      <button id="editBtn" class="edit-btn">✏️ Edit</button>
-    </div>
+    <!-- avatar -->
+    <img src="assets/avatar.jpg" alt="avatar" class="avatar">
 
-    <!-- Form -->
+    <button id="editBtn" class="edit-btn">✏ Edit</button>
+
     <form id="profileForm">
-
-      <div class="form-group">
         <label>ชื่อ - นามสกุล</label>
-        <input type="text" id="fullname" disabled required>
-      </div>
+        <input type="text">
 
-      <div class="form-group">
         <label>ชั้น</label>
-        <input type="text" id="class" disabled required>
-      </div>
+        <input type="text">
 
-      <div class="form-group">
         <label>เลขที่</label>
-        <input type="text" id="number" disabled required>
-      </div>
+        <input type="text">
 
-      <div class="form-group">
         <label>อีเมล</label>
-        <input type="email" id="email" disabled required>
-      </div>
+        <input type="email">
 
-      <div class="form-group">
         <label>เบอร์โทร</label>
-        <input type="text" id="phone" disabled>
-      </div>
+        <input type="tel">
 
-      <button id="saveBtn" disabled>Save</button>
+        <button type="submit" class="save-btn">Save</button>
     </form>
 
-    <span class="back-link" onclick="window.location.href='loggedin.html'">
-      Back
-    </span>
+    <a href="index.html" class="back-btn">Back</a>
 
-  </div>
+</div>
 
-  <script src="profile.js"></script>
 </body>
 </html>

@@ -13,17 +13,17 @@ body {
   align-items: center;
 }
 
-/* ===== กล่องหลัก ===== */
+/* กล่องหลัก */
 .profile-container {
-  width: 460px;
+  width: 440px;
   background: white;
   border-radius: 12px;
-  padding: 35px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  padding: 32px 36px 48px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
   position: relative;
 }
 
-/* ===== Header ===== */
+/* Header */
 .profile-header {
   display: flex;
   flex-direction: column;
@@ -32,8 +32,8 @@ body {
 }
 
 .avatar {
-  width: 110px;
-  height: 110px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 10px;
@@ -45,11 +45,11 @@ body {
 
 .edit-btn {
   font-size: 13px;
-  padding: 5px 12px;
+  padding: 4px 12px;
   cursor: pointer;
 }
 
-/* ===== Form ===== */
+/* Form */
 #profileForm {
   width: 100%;
 }
@@ -67,15 +67,15 @@ body {
 
 .form-group input {
   width: 100%;
-  padding: 9px 10px;
+  padding: 8px 10px;
   font-size: 14px;
 }
 
-/* ===== Save ===== */
+/* Save */
 #saveBtn {
   width: 100%;
-  margin-top: 12px;
-  padding: 11px 0;
+  margin-top: 14px;
+  padding: 10px 0;
   background: #0078d7;
   color: white;
   border: none;
@@ -88,10 +88,10 @@ body {
   cursor: not-allowed;
 }
 
-/* ===== Back ===== */
+/* Back */
 .back-link {
   position: absolute;
-  right: 22px;
+  right: 24px;
   bottom: 18px;
   font-size: 13px;
   text-decoration: underline;

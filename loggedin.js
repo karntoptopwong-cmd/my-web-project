@@ -5,11 +5,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const welcomeMsg = document.getElementById("welcomeMsg");
   const pointsDisplay = document.getElementById("points");
   const logoutBtn = document.getElementById("logoutBtn");
+
   const menuBtn = document.getElementById("menuBtn");
   const sidebar = document.getElementById("sidebar");
+  const profileArea = document.getElementById("profileArea");
 
-  // ป้องกัน sidebar โผล่เอง
-  sidebar.classList.remove("open");
+  // ป้องกัน error
+  if (!welcomeMsg || !pointsDisplay || !logoutBtn || !menuBtn || !sidebar) {
+    console.error("HTML element ไม่ครบ");
+    return;
+  }
 
   // เช็ก login
   if (!username) {
@@ -31,6 +36,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // ☰ toggle sidebar
   menuBtn.addEventListener("click", () => {
     sidebar.classList.toggle("open");
+  });
+
+  // ไปหน้า profile
+  profileArea.addEventListener("click", () => {
+    window.location.href = "profile.html";
   });
 
   // Log out

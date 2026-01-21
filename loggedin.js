@@ -7,8 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.getElementById("logoutBtn");
 
   const menuBtn = document.getElementById("menuBtn");
-  const closeModalBtn = document.getElementById("closeModalBtn");
-  const modalOverlay = document.getElementById("modalOverlay");
+  const sidebar = document.getElementById("sidebar");
 
   // เช็ก login
   if (!username) {
@@ -25,20 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   pointsDisplay.textContent = `Points: ${points}`;
 
-  // เปิด modal
+  // ☰ toggle sidebar
   menuBtn.addEventListener("click", () => {
-    modalOverlay.classList.add("show");
-  });
-
-  // ปิด modal
-  closeModalBtn.addEventListener("click", () => {
-    modalOverlay.classList.remove("show");
-  });
-
-  modalOverlay.addEventListener("click", (e) => {
-    if (e.target === modalOverlay) {
-      modalOverlay.classList.remove("show");
-    }
+    sidebar.classList.toggle("open");
   });
 
   // Logout

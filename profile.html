@@ -1,43 +1,43 @@
-<div class="profile-container">
-  <div class="profile-header">
-    <div class="avatar"></div>
-    <h3 id="usernameDisplay"></h3>
-    <button class="edit-btn" id="editBtn">Edit</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+  <div class="profile-container">
+    <div class="profile-card">
+
+      <!-- avatar -->
+      <div class="avatar"></div>
+
+      <!-- username -->
+      <h2 id="username"></h2>
+
+      <!-- edit -->
+      <button id="editBtn" class="edit-btn">✏ Edit</button>
+
+      <!-- form -->
+      <form id="profileForm">
+        <input type="text" id="nameInput" placeholder="ชื่อ - นามสกุล" disabled>
+        <input type="text" placeholder="ชั้น" disabled>
+        <input type="text" placeholder="เลขที่" disabled>
+        <input type="text" placeholder="เบอร์โทร (ไม่จำเป็น)" disabled>
+        <input type="email" placeholder="Email (ไม่จำเป็น)" disabled>
+
+        <button type="submit" id="saveBtn" disabled>Save</button>
+      </form>
+
+      <!-- back -->
+      <div class="back">
+        <a href="loggedin.html">Back</a>
+      </div>
+
+    </div>
   </div>
 
-  <form id="profileForm">
-    <!-- 1. ชื่อ-นามสกุล -->
-    <div class="form-group">
-      <label>ชื่อ-นามสกุล</label>
-      <input type="text" id="fullname" disabled>
-    </div>
-
-    <!-- 2. ชั้น -->
-    <div class="form-group">
-      <label>ชั้น</label>
-      <input type="text" id="classroom" disabled>
-    </div>
-
-    <!-- 3. เลขที่ -->
-    <div class="form-group">
-      <label>เลขที่</label>
-      <input type="number" id="number" disabled>
-    </div>
-
-    <!-- 4. อีเมล (จำเป็น) -->
-    <div class="form-group">
-      <label>อีเมล</label>
-      <input type="email" id="email" disabled>
-    </div>
-
-    <!-- 5. เบอร์โทร (ไม่บังคับ) -->
-    <div class="form-group">
-      <label>เบอร์โทร</label>
-      <input type="tel" id="phone" disabled>
-    </div>
-
-    <button type="submit" id="saveBtn" disabled>Save</button>
-  </form>
-
-  <span class="back-link" onclick="location.href='loggedin.html'">Back</span>
-</div>
+  <script src="profile.js"></script>
+</body>
+</html>

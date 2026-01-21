@@ -7,29 +7,27 @@
 </head>
 <body>
 
-  <!-- ปุ่มเมนู 3 ขีด -->
-  <button id="openModalBtn" class="menu-btn" aria-label="Menu">
-    &#9776;
-  </button>
+  <!-- ☰ เมนูมุมขวาบน -->
+  <button id="menuBtn" class="menu-btn">☰</button>
 
-  <h1 id="welcomeMsg"></h1>
-  <p id="points"></p>
-
-  <button id="logoutBtn" type="button">Log Out</button>
+  <!-- เนื้อหาหลัก -->
+  <div class="content">
+    <h1 id="welcomeMsg"></h1>
+    <p id="points"></p>
+    <button id="logoutBtn">Log Out</button>
+  </div>
 
   <!-- Modal -->
   <div id="modalOverlay" class="modal-overlay">
     <div class="modal-box">
       <h2>เมนูเพิ่มเติม</h2>
-
-      <button>โปรไฟล์</button>
-      <button>ตั้งค่า</button>
-
+      <button>Option 1</button>
+      <button>Option 2</button>
+      <br><br>
       <button id="closeModalBtn">ปิด</button>
     </div>
   </div>
 
-  <!-- JS ต้องอยู่ล่างสุด -->
   <script src="loggedin.js"></script>
 </body>
 </html>

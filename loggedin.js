@@ -6,17 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const pointsDisplay = document.getElementById("points");
   const logoutBtn = document.getElementById("logoutBtn");
 
-  const openModalBtn = document.getElementById("openModalBtn");
+  const menuBtn = document.getElementById("menuBtn");
   const closeModalBtn = document.getElementById("closeModalBtn");
   const modalOverlay = document.getElementById("modalOverlay");
 
-  // ===== ป้องกัน error =====
-  if (!welcomeMsg || !pointsDisplay || !logoutBtn || !modalOverlay) {
-    console.error("HTML element หาย");
-    return;
-  }
-
-  // ===== เช็ก login =====
+  // เช็ก login
   if (!username) {
     window.location.href = "index.html";
     return;
@@ -31,35 +25,26 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   pointsDisplay.textContent = `Points: ${points}`;
 
-  // ===== เปิด modal =====
-  if (openModalBtn) {
-    openModalBtn.addEventListener("click", () => {
-  modalOverlay.style.display =
-    modalOverlay.style.display === "flex" ? "none" : "flex";
-});
+  // เปิด modal
+  menuBtn.addEventListener("click", () => {
+    modalOverlay.classList.add("show");
+  });
 
-    });
-  }
+  // ปิด modal
+  closeModalBtn.addEventListener("click", () => {
+    modalOverlay.classList.remove("show");
+  });
 
-  // ===== ปิด modal =====
-  if (closeModalBtn) {
-    closeModalBtn.addEventListener("click", () => {
-      modalOverlay.style.display = "none";
-    });
-  }
-
-  // คลิกพื้นหลังเพื่อปิด
   modalOverlay.addEventListener("click", (e) => {
     if (e.target === modalOverlay) {
-      modalOverlay.style.display = "none";
+      modalOverlay.classList.remove("show");
     }
   });
 
-  // ===== Logout =====
+  // Logout
   logoutBtn.addEventListener("click", () => {
     localStorage.removeItem("loggedInUser");
     window.location.href = "index.html";
   });
 
 });
-

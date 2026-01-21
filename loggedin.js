@@ -34,7 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===== เปิด modal =====
   if (openModalBtn) {
     openModalBtn.addEventListener("click", () => {
-      modalOverlay.style.display = "flex";
+  modalOverlay.style.display =
+    modalOverlay.style.display === "flex" ? "none" : "flex";
+});
+
     });
   }
 
@@ -59,3 +62,4 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+

@@ -8,17 +8,21 @@ const saveBtn = document.getElementById("saveBtn");
 const editBtn = document.getElementById("editBtn");
 const inputs = document.querySelectorAll("input");
 
-/* ===== ใส่ localStorage ตรงนี้ ===== */
-const savedData = localStorage.getItem("profileData");
-if (savedData) {
-  const data = JSON.parse(savedData);
-  fullname.value = data.fullname || "";
-  classInput.value = data.class || "";
-  number.value = data.number || "";
-  email.value = data.email || "";
-  phone.value = data.phone || "";
+function checkForm() {
+  if (!isEditing) return;
+
+  const isValid =
+    fullname.value.trim() !== "" &&
+    classInput.value.trim() !== "" &&
+    number.value.trim() !== "" &&
+    email.value.trim() !== "";
+
+  saveBtn.disabled = !isValid;
 }
 
+inputs.forEach(input => {
+  input.addEventListener("input", checkForm);
+});
 
 // เริ่มต้น: ล็อกทุกช่อง
 inputs.forEach(input => input.disabled = true);
@@ -33,7 +37,9 @@ editBtn.addEventListener('click', () => {
     input.disabled = !isEditing; // ⭐ แก้ตรงนี้
   });
 
-  saveBtn.disabled = !isEditing;
+  saveBtn.disabled = true;
+
+  if (isEditing) checkForm();
 
   editBtn.textContent = isEditing ? '✖ Cancel' : '✎ Edit';
 });
@@ -59,4 +65,5 @@ form.addEventListener("submit", (e) => {
 
   alert("บันทึกข้อมูลแล้ว");
 });
+
 

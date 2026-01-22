@@ -14,13 +14,15 @@
 
     <h2 id="usernameDisplay"></h2>
 
-    <button id="editBtn" class="edit-btn">✏ Edit</button>
+   <form id="profileForm">
 
-    <form id="profileForm">
-       <button type="button" id="editBtn" class="edit-btn">✏ Edit</button>
+  <div class="field-with-edit">
+    <label>ชื่อ - นามสกุล</label>
 
-  <label>ชื่อ - นามสกุล</label>
-  <input type="text" id="fullname" disabled required>
+    <button type="button" id="editBtn" class="edit-btn">✏️ Edit</button>
+
+    <input type="text" id="fullname" disabled required>
+  </div>
 
   <label>ชั้น</label>
   <input type="text" id="class" disabled required>
@@ -36,6 +38,10 @@
 
   <button type="submit" class="save-btn" disabled>Save</button>
 </form>
+
+
+  <button type="submit" class="save-btn" disabled>Save</button>
+</form>
     <a href="loggedin.html" class="back-btn">Back</a>
 
 </div>
@@ -43,4 +49,5 @@
 <script src="profile.js"></script>
 </body>
 </html>
+
 

@@ -25,12 +25,9 @@ body {
 
 /* edit button */
 .edit-btn {
-  position: absolute;
-  top: 90px;      /* ปรับขึ้น–ลง */
-  right: 40px;    /* ชิดขวา */
-  border-radius: 6px;
-  padding: 4px 10px;
-  cursor: pointer;
+  margin-bottom: 15px; /* ดันฟอร์มลง */
+  border-radius: 8px;
+  padding: 8px 12px;
 }
 
 /* form */
@@ -70,5 +67,6 @@ input {
     text-decoration: underline;
     color: black;
 }
+
 
 

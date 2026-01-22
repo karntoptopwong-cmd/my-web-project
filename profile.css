@@ -43,48 +43,53 @@ body {
 
 }
 
-/* form */
+/* ฟอร์มทั้งหมด */
 form {
     text-align: left;
-    margin-top: 30px;
+    margin-top: 40px; /* ดันฟอร์มลงจากหัวการ์ด */
 }
 
+/* กลุ่ม ชื่อ-นามสกุล + Edit */
+.field-with-edit {
+    margin-top: 20px; /* ดันลงจากด้านบน */
+}
+
+/* label ของทุกช่อง */
 label {
     display: block;
-    margin-top: 10px;
+    margin-top: 20px;   /* ระยะห่างระหว่างแต่ละช่อง */
+    margin-bottom: 6px;
 }
 
+/* กล่อง input ทุกอัน */
 input {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
+    padding: 10px;
+    margin-bottom: 10px; /* ดันช่องถัดไปลง */
     box-sizing: border-box;
 }
 
-/* save */
+/* ปุ่ม Edit */
+.edit-btn {
+    padding: 6px 10px;
+}
+
+/* ปุ่ม Save */
 .save-btn {
     width: 100%;
-    margin-top: 20px;
-    padding: 10px;
+    margin-top: 30px;   /* ดันปุ่ม Save ลง */
+    padding: 12px;
     background: #b0b0b0;
     border: none;
     color: white;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 6px;
 }
 
-/* back (ไม่หลุดกรอบ) */
+/* ปุ่ม Back */
 .back-btn {
     display: inline-block;
-    margin-top: 15px;
+    margin-top: 25px;  /* ดัน Back ลง */
     text-decoration: underline;
     color: black;
 }
-
-
-
-
-
-
-
-

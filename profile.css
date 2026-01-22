@@ -33,6 +33,7 @@ body {
   right: 0;
   padding: 4px 6px;
   cursor: pointer;
+    margin-bottom: 20px;
 }
 
 /* edit button */
@@ -93,6 +94,7 @@ input {
     text-decoration: underline;
     color: black;
 }
+
 
 
 

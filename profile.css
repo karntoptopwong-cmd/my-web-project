@@ -22,14 +22,6 @@ body {
     object-fit: cover;
     margin-bottom: 10px;
 }
-.field-with-edit {
-    position: relative;
-    margin-bottom: 25px; /* ระยะห่างจากช่องถัดไป */
-}
-
-.field-with-edit input {
-    padding-right: 100px; /* เว้นที่ให้ปุ่ม Edit */
-}
 
 .edit-btn {
     position: absolute;
@@ -86,6 +78,7 @@ input {
     text-decoration: underline;
     color: black;
 }
+
 
 
 

@@ -23,13 +23,12 @@ body {
     margin-bottom: 10px;
 }
 
-/* field with edit (ชื่อ - นามสกุล) */ .field-with-edit { position: relative; } 
-.field-with-edit .edit-btn { position: absolute;
-                            top: 0; 
-                            right: 0; 
-                            padding: 4px 6px; 
-                            cursor: pointer; }
-
+/* edit button */ .edit-btn { 
+    top: 5; 
+    margin-bottom: 20px; /* ดันฟอร์มลง */ 
+    border-radius: 8px; 
+    padding: 4px 6px;
+}
 /* ฟอร์มทั้งหมด */
 form {
     text-align: left;
@@ -80,6 +79,7 @@ input {
     text-decoration: underline;
     color: black;
 }
+
 
 
 

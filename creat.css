@@ -1,4 +1,4 @@
-/* ==== GLOBAL ==== */
+/* ================= GLOBAL ================= */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -20,12 +20,62 @@ button {
   border-radius: 4px;
 }
 
-/* ==== LOGIN ==== */
-.login-container {
-  padding: 30px;
+input {
+  margin: 8px 0;
+  border: 1px solid #ccc;
 }
 
-/* ==== SIGNUP ==== */
-.signup-container {
+button {
+  background-color: #0078d7;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005fa3;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* ================= LOGIN ================= */
+.login-container {
+  background: white;
   padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 300px;
+  text-align: center;
+}
+
+.create-account {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.create-account a {
+  color: #0078d7;
+  text-decoration: none;
+}
+
+.create-account a:hover {
+  text-decoration: underline;
+}
+
+/* ================= SIGNUP ================= */
+.signup-container {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 300px;
 }

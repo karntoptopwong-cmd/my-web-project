@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const username = localStorage.getItem("currentUser");
 
   const welcomeMsg = document.getElementById("welcomeMsg");
-  const pointsDisplay = document.getElementById("points");
+  const pointsDisplay = document.getElementById("points"); // ⭐ เพิ่มบรรทัดนี้
   const logoutBtn = document.getElementById("logoutBtn");
 
   const menuBtn = document.getElementById("menuBtn");
@@ -25,12 +25,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // แสดงชื่อ
   welcomeMsg.textContent = `Welcome, ${username}!`;
 
-  // points
-  let points = localStorage.getItem("points");
+  // points (แยกต่อคน)
+  const pointKey = `points_${username}`;
+
+  let points = localStorage.getItem(pointKey);
   if (points === null) {
     points = 0;
-    localStorage.setItem("points", points);
+    localStorage.setItem(pointKey, points);
   }
+
   pointsDisplay.textContent = `Points: ${points}`;
 
   // ☰ toggle sidebar
@@ -50,4 +53,3 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
-

@@ -7,6 +7,7 @@ const phone = document.getElementById("phone");
 const saveBtn = document.getElementById("saveBtn");
 const editBtn = document.getElementById("editBtn");
 const inputs = document.querySelectorAll("input");
+const mouseLight = document.getElementById("mouse-light");
 
 const currentUser = localStorage.getItem("currentUser");
 if (!currentUser) {
@@ -94,5 +95,15 @@ form.addEventListener("submit", (e) => {
 
   alert("บันทึกข้อมูลแล้ว");
 });
+document.addEventListener("mousemove", (e) => {
+  mouseLight.style.background = `
+    radial-gradient(
+      circle at ${e.clientX}px ${e.clientY}px,
+      rgba(255, 255, 255, 0.2),
+      rgba(0, 0, 0, 0.6) 40%
+    )
+  `;
+});
+
 
 

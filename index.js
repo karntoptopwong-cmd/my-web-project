@@ -9,7 +9,7 @@ const form = document.getElementById('loginForm');
       const userData = localStorage.getItem(`user_${username}`);
 
         if (!userData) {
-    errorMsg.textContent = "ไม่พบบัญชีผู้ใช้";
+    errorMsg.textContent = "Account not found";
     return;
   }
 
@@ -23,4 +23,5 @@ const form = document.getElementById('loginForm');
       }
 
     });
+
 

@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const username = localStorage.getItem("currentUser");
 
   const welcomeMsg = document.getElementById("welcomeMsg");
-  const pointsDisplay = document.getElementById("points"); // ⭐ เพิ่มบรรทัดนี้
+  const pointsDisplay = document.getElementById("points");
   const logoutBtn = document.getElementById("logoutBtn");
 
   const menuBtn = document.getElementById("menuBtn");
@@ -11,25 +11,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const profileArea = document.getElementById("profileArea");
   const mouseLight = document.getElementById("mouse-light");
 
-  // ป้องกัน error
   if (!welcomeMsg || !pointsDisplay || !logoutBtn || !menuBtn || !sidebar) {
     console.error("HTML element ไม่ครบ");
     return;
   }
 
-  // เช็ก login
   if (!username) {
     window.location.href = "index.html";
     return;
   }
 
-  // แสดงชื่อ
   welcomeMsg.textContent = `Welcome, ${username}!`;
 
-  // points (แยกต่อคน)
   const pointKey = `points_${username}`;
-
   let points = localStorage.getItem(pointKey);
+
   if (points === null) {
     points = 0;
     localStorage.setItem(pointKey, points);
@@ -37,31 +33,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   pointsDisplay.textContent = `Points: ${points}`;
 
-  // ☰ toggle sidebar
   menuBtn.addEventListener("click", () => {
     sidebar.classList.toggle("open");
   });
 
-  // ไปหน้า profile
   profileArea.addEventListener("click", () => {
     window.location.href = "profile.html";
   });
 
-  // Log out
   logoutBtn.addEventListener("click", () => {
     localStorage.removeItem("currentUser");
     window.location.href = "index.html";
   });
+
   document.addEventListener("mousemove", (e) => {
-  if (!mouseLight) return; // กัน error เผื่อไม่มี element
+    if (!mouseLight) return;
 
-  mouseLight.style.background = `
-    radial-gradient(
-      circle at ${e.clientX}px ${e.clientY}px,
-      rgba(255, 255, 255, 0.2),
-      rgba(0, 0, 0, 0.6) 40%
-    )
-  `;
-});
+    mouseLight.style.background = `
+      radial-gradient(
+        circle at ${e.clientX}px ${e.clientY}px,
+        rgba(255, 255, 255, 0.2),
+        rgba(0, 0, 0, 0.6) 40%
+      )
+    `;
+  });
 
-
+}); // ⭐⭐⭐ อันนี้แหละที่ขาด

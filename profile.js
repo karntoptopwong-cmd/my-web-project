@@ -28,6 +28,12 @@ function checkForm() {
     email.value.trim() !== "";
 
   saveBtn.disabled = !isValid;
+  if (isValid) {
+  saveBtn.classList.add("active");
+} else {
+  saveBtn.classList.remove("active");
+}
+
 }
 
 inputs.forEach(input => {
@@ -70,11 +76,15 @@ form.addEventListener("submit", (e) => {
 
   inputs.forEach(input => input.disabled = true);
   saveBtn.disabled = true;
+  saveBtn.classList.remove("active");
+
   isEditing = false;
   editBtn.textContent = "✏ Edit";
 
+
   alert("บันทึกข้อมูลแล้ว");
 });
+
 
 
 

@@ -4,12 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const errorMsg = document.getElementById('errorMsg');
   const mouseLight = document.getElementById("mouse-light");
 
-  if (!form) return; // กัน error
+  if (!form) return;
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const username = document.getElementById('username').value.trim();
+    errorMsg.textContent = ""; // เคลียร์ error เก่า
+
+    const username = document.getElementById('username').value.trim().toLowerCase();
     const password = document.getElementById('password').value;
 
     const userData = localStorage.getItem(`user_${username}`);
@@ -19,14 +21,29 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const parsedUser = JSON.parse(userData);
-
-    if (password === parsedUser.password) {
-      localStorage.setItem('currentUser', username);
-      window.location.href = "loggedin.html";
-    } else {
-      errorMsg.textContent = "Invalid username or password.";
+    let parsedUser;
+    try {
+      parsedUser = JSON.parse(userData);
+    } catch {
+      errorMsg.textContent = "User data corrupted";
+      return;
     }
+
+    if (password !== parsedUser.password) {
+      errorMsg.textContent = "Invalid username or password.";
+      return;
+    }
+
+    // ✅ LOGIN SUCCESS → CREATE SESSION
+    const session = {
+      token: crypto.randomUUID(),
+      userId: parsedUser.id || username, // ชั่วคราว (ยังไม่มี id จริง)
+      expireAt: Date.now() + 30 * 60 * 1000 // 30 นาที
+    };
+
+    localStorage.setItem("session", JSON.stringify(session));
+
+    window.location.href = "loggedin.html";
   });
 
   // ===== Mouse Light Effect =====

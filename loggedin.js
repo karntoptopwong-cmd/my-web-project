@@ -1,61 +1,65 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  const username = localStorage.getItem("currentUser");
-
   const welcomeMsg = document.getElementById("welcomeMsg");
   const pointsDisplay = document.getElementById("points");
   const logoutBtn = document.getElementById("logoutBtn");
-
   const menuBtn = document.getElementById("menuBtn");
   const sidebar = document.getElementById("sidebar");
   const profileArea = document.getElementById("profileArea");
   const mouseLight = document.getElementById("mouse-light");
 
-  if (!welcomeMsg || !pointsDisplay || !logoutBtn || !menuBtn || !sidebar) {
-    console.error("HTML element ไม่ครบ");
-    return;
+  // ===== เช็ค session =====
+  const sessionRaw = localStorage.getItem("session");
+  if (!sessionRaw) return redirectToLogin();
+
+  let session;
+  try {
+    session = JSON.parse(sessionRaw);
+  } catch (err) {
+    return redirectToLogin();
   }
 
-  if (!username) {
-    window.location.href = "index.html";
-    return;
-  }
+  if (Date.now() > session.expireAt) return redirectToLogin();
+
+  // หา username จาก userId
+  const userRaw = localStorage.getItem(`user_${session.userId}`);
+  if (!userRaw) return redirectToLogin();
+  const user = JSON.parse(userRaw);
+  const username = user.username;
 
   welcomeMsg.textContent = `Welcome, ${username}!`;
 
   const pointKey = `points_${username}`;
   let points = localStorage.getItem(pointKey);
-
   if (points === null) {
     points = 0;
     localStorage.setItem(pointKey, points);
   }
-
   pointsDisplay.textContent = `Points: ${points}`;
 
-  menuBtn.addEventListener("click", () => {
-    sidebar.classList.toggle("open");
-  });
-
-  profileArea.addEventListener("click", () => {
-    window.location.href = "profile.html";
-  });
+  // ===== menu / sidebar =====
+  menuBtn.addEventListener("click", () => sidebar.classList.toggle("open"));
+  profileArea.addEventListener("click", () => window.location.href = "profile.html");
 
   logoutBtn.addEventListener("click", () => {
-    localStorage.removeItem("currentUser");
-    window.location.href = "index.html";
+    if (confirm("Do you really want to logout?")) {
+      localStorage.removeItem("session");
+      redirectToLogin();
+    }
   });
 
+  // ===== mouse light =====
   document.addEventListener("mousemove", (e) => {
     if (!mouseLight) return;
-
     mouseLight.style.background = `
-      radial-gradient(
-        circle at ${e.clientX}px ${e.clientY}px,
-        rgba(255, 255, 255, 0.2),
-        rgba(0, 0, 0, 0.6) 40%
-      )
+      radial-gradient(circle at ${e.clientX}px ${e.clientY}px,
+      rgba(255,255,255,0.2),
+      rgba(0,0,0,0.6) 40%)
     `;
   });
 
-}); // ⭐⭐⭐ อันนี้แหละที่ขาด
+  function redirectToLogin() {
+    window.location.href = "index.html";
+  }
+
+});

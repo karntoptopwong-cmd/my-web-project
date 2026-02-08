@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const errorMsg = document.getElementById('errorMsg');
   const mouseLight = document.getElementById("mouse-light");
 
-  if (!form) return; // กัน error
+  if (!form) return;
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -12,6 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const username = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
+
+    if (!username || !password) {
+      errorMsg.textContent = "Please fill all fields.";
+      return;
+    }
 
     if (password !== confirmPassword) {
       errorMsg.textContent = "Passwords do not match.";
@@ -30,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
       JSON.stringify(userData)
     );
 
-    // ไม่ auto login
+    // สมัครเสร็จ → กลับไป login
     window.location.href = "index.html";
   });
 

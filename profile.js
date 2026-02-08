@@ -9,20 +9,36 @@ const editBtn = document.getElementById("editBtn");
 const inputs = document.querySelectorAll("input");
 const mouseLight = document.getElementById("mouse-light");
 
-// ===== เช็ค session =====
-const sessionRaw = localStorage.getItem("session");
-if (!sessionRaw) redirectToLogin();
-
-let session;
-try {
-  session = JSON.parse(sessionRaw);
-} catch {
-  redirectToLogin();
+// ===== ฟังก์ชัน checkAuth =====
+function redirectToLogin() {
+  window.location.href = "index.html";
 }
 
-if (Date.now() > session.expireAt) redirectToLogin();
+function checkAuth() {
+  const sessionRaw = localStorage.getItem("session");
+  if (!sessionRaw) redirectToLogin();
 
-// lookup user
+  let session;
+  try {
+    session = JSON.parse(sessionRaw);
+  } catch {
+    redirectToLogin();
+  }
+
+  // ตรวจ session หมดอายุ
+  if (Date.now() > session.expireAt) {
+    alert("Session หมดอายุ กรุณา login ใหม่");
+    localStorage.removeItem("session");
+    redirectToLogin();
+  }
+
+  return session;
+}
+
+// ===== เรียก checkAuth ก่อนโหลดหน้า =====
+const session = checkAuth();
+
+// lookup user ตาม userId ใน session
 const userRaw = localStorage.getItem(`user_${session.userId}`);
 if (!userRaw) redirectToLogin();
 const user = JSON.parse(userRaw);
@@ -117,7 +133,3 @@ document.addEventListener("mousemove", e => {
     )
   `;
 });
-
-function redirectToLogin() {
-  window.location.href = "index.html";
-}

@@ -9,82 +9,94 @@ const editBtn = document.getElementById("editBtn");
 const inputs = document.querySelectorAll("input");
 const mouseLight = document.getElementById("mouse-light");
 
-const currentUser = localStorage.getItem("currentUser");
-if (!currentUser) {
-  alert("กรุณาเข้าสู่ระบบใหม่");
-  window.location.href = "login.html";
+// ===== เช็ค session =====
+const sessionRaw = localStorage.getItem("session");
+if (!sessionRaw) redirectToLogin();
+
+let session;
+try {
+  session = JSON.parse(sessionRaw);
+} catch {
+  redirectToLogin();
 }
 
-const savedProfile = localStorage.getItem(`profile_${currentUser}`);
+if (Date.now() > session.expireAt) redirectToLogin();
 
+// lookup user
+const userRaw = localStorage.getItem(`user_${session.userId}`);
+if (!userRaw) redirectToLogin();
+const user = JSON.parse(userRaw);
+
+// ===== Load profile =====
+const savedProfile = localStorage.getItem(`profile_${user.username}`);
 if (savedProfile) {
   const data = JSON.parse(savedProfile);
-
   fullname.value = data.fullname || "";
-  classInput.value = data.class || "";
+  classInput.value = data.classLevel || "";
   number.value = data.number || "";
   email.value = data.email || "";
   phone.value = data.phone || "";
 }
 
+// ===== Snapshot ของค่าเดิม =====
+let snapshot = {
+  fullname: fullname.value,
+  classLevel: classInput.value,
+  number: number.value,
+  email: email.value,
+  phone: phone.value
+};
+
+let isEditing = false;
+
+// ===== Enable Edit / Cancel =====
+editBtn.addEventListener('click', () => {
+  isEditing = !isEditing;
+  inputs.forEach(input => input.disabled = !isEditing);
+  saveBtn.disabled = !isEditing;
+
+  if (!isEditing) {
+    // Revert ค่าเดิม
+    fullname.value = snapshot.fullname;
+    classInput.value = snapshot.classLevel;
+    number.value = snapshot.number;
+    email.value = snapshot.email;
+    phone.value = snapshot.phone;
+    saveBtn.classList.remove("active");
+  }
+
+  editBtn.textContent = isEditing ? '✖ Cancel' : '✏ Edit';
+});
+
+// ===== ตรวจ form =====
 function checkForm() {
   if (!isEditing) return;
-
   const isValid =
     fullname.value.trim() !== "" &&
     classInput.value.trim() !== "" &&
     number.value.trim() !== "" &&
     email.value.trim() !== "";
-
   saveBtn.disabled = !isValid;
-  if (isValid) {
-  saveBtn.classList.add("active");
-} else {
-  saveBtn.classList.remove("active");
+  saveBtn.classList.toggle("active", isValid);
 }
 
-}
+inputs.forEach(input => input.addEventListener("input", checkForm));
 
-inputs.forEach(input => {
-  input.addEventListener("input", checkForm);
-});
-
-// เริ่มต้น: ล็อกทุกช่อง
-inputs.forEach(input => input.disabled = true);
-saveBtn.disabled = true;
-
-let isEditing = false;
-
-editBtn.addEventListener('click', () => {
-  isEditing = !isEditing;
-
-  inputs.forEach(input => {
-    input.disabled = !isEditing; // ⭐ แก้ตรงนี้
-  });
-
-  saveBtn.disabled = true;
-
-  if (isEditing) checkForm();
-
-  editBtn.textContent = isEditing ? '✖ Cancel' : '✎ Edit';
-});
-
-// Save
-form.addEventListener("submit", (e) => {
+// ===== Save =====
+form.addEventListener("submit", e => {
   e.preventDefault();
-
-  /* ===== ใส่ localStorage ตรงนี้ ===== */
   const profileData = {
     fullname: fullname.value,
-    class: classInput.value,
+    classLevel: classInput.value,
     number: number.value,
     email: email.value,
     phone: phone.value
   };
-  localStorage.setItem(
-  `profile_${currentUser}`,
-  JSON.stringify(profileData)
-);
+  localStorage.setItem(`profile_${user.username}`, JSON.stringify(profileData));
+
+  // อัปเดต snapshot
+  snapshot = { ...profileData };
+
   inputs.forEach(input => input.disabled = true);
   saveBtn.disabled = true;
   saveBtn.classList.remove("active");
@@ -92,10 +104,11 @@ form.addEventListener("submit", (e) => {
   isEditing = false;
   editBtn.textContent = "✏ Edit";
 
-
   alert("บันทึกข้อมูลแล้ว");
 });
-document.addEventListener("mousemove", (e) => {
+
+// ===== Mouse light =====
+document.addEventListener("mousemove", e => {
   mouseLight.style.background = `
     radial-gradient(
       circle at ${e.clientX}px ${e.clientY}px,
@@ -105,5 +118,6 @@ document.addEventListener("mousemove", (e) => {
   `;
 });
 
-
-
+function redirectToLogin() {
+  window.location.href = "index.html";
+}

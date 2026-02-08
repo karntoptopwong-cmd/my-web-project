@@ -1,22 +1,23 @@
-document.addEventListener("DOMContentLoaded", () => {
+async function hashPassword(password) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
 
+document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById('signupForm');
   const errorMsg = document.getElementById('errorMsg');
-  const mouseLight = document.getElementById("mouse-light");
 
   if (!form) return;
 
-  form.addEventListener('submit', function(e) {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const username = document.getElementById('username').value.trim();
+    const username = document.getElementById('username').value.trim().toLowerCase();
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
-
-    if (!username || !password) {
-      errorMsg.textContent = "Please fill all fields.";
-      return;
-    }
 
     if (password !== confirmPassword) {
       errorMsg.textContent = "Passwords do not match.";
@@ -28,28 +29,16 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const userData = { username, password };
+    const passwordHash = await hashPassword(password);
 
-    localStorage.setItem(
-      `user_${username}`,
-      JSON.stringify(userData)
-    );
+    const userData = {
+      username,
+      passwordHash
+    };
 
-    // สมัครเสร็จ → กลับไป login
+    localStorage.setItem(`user_${username}`, JSON.stringify(userData));
+
+    alert("สมัครเสร็จแล้ว!");
     window.location.href = "index.html";
   });
-
-  // ===== Mouse Light Effect =====
-  if (mouseLight) {
-    document.addEventListener("mousemove", (e) => {
-      mouseLight.style.background = `
-        radial-gradient(
-          circle at ${e.clientX}px ${e.clientY}px,
-          rgba(255, 255, 255, 0.2),
-          rgba(0, 0, 0, 0.6) 40%
-        )
-      `;
-    });
-  }
-
 });
